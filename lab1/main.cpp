@@ -1,9 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 vector<vector<int>> Nets;
 vector<vector<int>> Cells;
-
 class BucketList {
   vector<int> Next, Pre;
   int P, maxP, n, Mx[2];
@@ -25,7 +23,8 @@ public:
   int pop(int b) {
     int bd = bucket_id(b, mx(b));
     int nd = Next[bd];
-    if (nd < 0) return -1;
+    if (nd < 0)
+      return -1;
     Next[bd] = Next[nd];
     if (Next[nd] != -1)
       Pre[Next[nd]] = bd;
@@ -82,7 +81,8 @@ int FM(vector<bool> &Partition, const int P) {
     --sz[b], ++sz[!b];
     sumGain.push_back(BL.mx(b) - P);
     int node = BL.pop(b);
-    if (node < 0) break;
+    if (node < 0)
+      break;
     Lock[node] = true;
     swapNode.push_back(node);
     for (int i : Cells[node]) {
@@ -119,17 +119,16 @@ int FM(vector<bool> &Partition, const int P) {
   }
   return ret;
 }
+unsigned seed;
 inline void genRandomBit(vector<bool> &v) {
   fill(v.begin(), v.begin() + (v.size() >> 1), 1);
-  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   shuffle(v.begin(), v.end(), std::default_random_engine(seed));
 }
 int main(int argv, char *argc[]) {
-  auto start = std::chrono::system_clock::now();
   freopen(argc[1], "r", stdin);
   freopen("output.txt", "w", stdout);
   ios::sync_with_stdio(0), cin.tie(0);
-  srand(time(0));
+  seed = std::chrono::system_clock::now().time_since_epoch().count();
   int N, M, P = 0;
   cin >> M >> N;
   Nets.resize(M), Cells.resize(N);
@@ -142,9 +141,7 @@ int main(int argv, char *argc[]) {
       Nets[i].push_back(v - 1), Cells[v - 1].push_back(i);
     P += Nets[i].size();
   }
-  int run = max(1, (int)1e9 / P);
-  cout << run << "\n";
-  // int run = 1;
+  int run = max(1, (int)5e8 / P);
   vector<vector<bool>> Partition(run, vector<bool>(N));
   vector<int> CntCut(run);
 #pragma omp parallel for
@@ -158,8 +155,5 @@ int main(int argv, char *argc[]) {
       ans = i;
   for (int i = 0; i < N; ++i)
     cout << Partition[ans][i] << '\n';
-  auto end = std::chrono::system_clock::now();
-  std::chrono::duration<double> elapsed_seconds = end-start;
-  cout << elapsed_seconds.count() << "s\n";
   return 0;
 }
