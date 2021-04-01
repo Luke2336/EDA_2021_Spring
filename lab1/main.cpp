@@ -141,7 +141,7 @@ int main(int argv, char *argc[]) {
       Nets[i].push_back(v - 1), Cells[v - 1].push_back(i);
     P += Nets[i].size();
   }
-  int run = max(1, (int)5e8 / P);
+  int run = min(max(1, (int)5e8 / P), (int)1e5);
   vector<vector<bool>> Partition(run, vector<bool>(N));
   vector<int> CntCut(run);
 #pragma omp parallel for
