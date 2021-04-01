@@ -52,7 +52,7 @@ public:
 inline bool range(int v, int L, int R) { return L <= v && v <= R; }
 int FM(vector<bool> &Partition, const int P) {
   int N = Cells.size(), M = Nets.size();
-  int M1 = ceil(N * 0.45), M2 = floor(N * 0.55);
+  int M1 = ceil(N * 0.46), M2 = floor(N * 0.54);
   vector<bool> Lock(N);
   vector<int> Gain(N), CntCell[2];
   CntCell[0].resize(M), CntCell[1].resize(M);
