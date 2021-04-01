@@ -125,6 +125,7 @@ inline void genRandomBit(vector<bool> &v) {
   shuffle(v.begin(), v.end(), std::default_random_engine(seed));
 }
 int main(int argv, char *argc[]) {
+  auto start = std::chrono::system_clock::now();
   freopen(argc[1], "r", stdin);
   freopen("output.txt", "w", stdout);
   ios::sync_with_stdio(0), cin.tie(0);
@@ -141,7 +142,8 @@ int main(int argv, char *argc[]) {
       Nets[i].push_back(v - 1), Cells[v - 1].push_back(i);
     P += Nets[i].size();
   }
-  int run = max(1, (int)2e10 / P);
+  int run = max(1, (int)1e9 / P);
+  cout << run << "\n";
   // int run = 1;
   vector<vector<bool>> Partition(run, vector<bool>(N));
   vector<int> CntCut(run);
@@ -156,5 +158,8 @@ int main(int argv, char *argc[]) {
       ans = i;
   for (int i = 0; i < N; ++i)
     cout << Partition[ans][i] << '\n';
+  auto end = std::chrono::system_clock::now();
+  std::chrono::duration<double> elapsed_seconds = end-start;
+  cout << elapsed_seconds.count() << "s\n";
   return 0;
 }
