@@ -16,7 +16,7 @@ public:
     Pre.resize(Next.size(), -1);
   }
   int mx(int b) {
-    while (Mx[b] && Next[bucket_id(b, Mx[b])] == -1)
+    while (Mx[b] > 0 && Next[bucket_id(b, Mx[b])] == -1)
       --Mx[b];
     return Mx[b];
   }
@@ -72,9 +72,13 @@ int FM(vector<bool> &Partition, const int P) {
   int sz[2] = {N >> 1, N - (N >> 1)};
   for (int t = 0; t < N; ++t) {
     bool b;
-    if (range(sz[0] - 1, M1, M2) && (sz[1] < 0 || BL.mx(0) >= BL.mx(1)))
+    if (range(sz[0] - 1, M1, M2) && BL.mx(0) >= BL.mx(1))
       b = 0;
-    else if (range(sz[0] + 1, M1, M2) && (sz[0] < 0 || BL.mx(0) <= BL.mx(1)))
+    else if (range(sz[0] + 1, M1, M2) && BL.mx(0) <= BL.mx(1))
+      b = 1;
+    else if (range(sz[0] - 1, M1, M2))
+      b = 0;
+    else if (range(sz[0] + 1, M1, M2))
       b = 1;
     else
       break;
