@@ -3,49 +3,67 @@ using namespace std;
 vector<vector<int>> Nets;
 vector<vector<int>> Cells;
 class BucketList {
-  vector<int> Next, Pre;
+  // vector<int> Next, Pre;
   int P, maxP, n, Mx[2];
-  int node_id(int v) { return (maxP << 1) + v; }
-  int node_reid(int i) { return i - (maxP << 1); }
-  int bucket_id(int b, int id) { return b ? maxP + id : id; }
+  // int node_id(int v) { return (maxP << 1) + v; }
+  // int node_reid(int i) { return i - (maxP << 1); }
+  // int bucket_id(int b, int id) { return b ? maxP + id : id; }
+
+  map<int, unordered_set<int>> mp[2];
+  unordered_map<int, pair<int, int>> Gain;
 
 public:
   BucketList(int P, int n) : P(P), n(n), maxP((P << 1) | 1) {
-    Mx[0] = Mx[1] = -1;
-    Next.resize((maxP << 1) + n, -1);
-    Pre.resize(Next.size(), -1);
+    // Mx[0] = Mx[1] = -1;
+    // Next.resize((maxP << 1) + n, -1);
+    // Pre.resize(Next.size(), -1);
   }
   int mx(int b) {
-    while (Mx[b] > 0 && Next[bucket_id(b, Mx[b])] == -1)
-      --Mx[b];
-    return Mx[b];
+    while (mp[b].size() && mp[b].rbegin()->second.empty())
+      mp[b].erase(mp[b].rbegin()->first);
+    if (mp[b].size() == 0) return -1;
+    assert(mp[b].size() > 0);
+    return mp[b].rbegin()->first;
+    // while (Mx[b] > 0 && Next[bucket_id(b, Mx[b])] == -1)
+    //   --Mx[b];
+    // return Mx[b];
   }
   int pop(int b) {
-    int bd = bucket_id(b, mx(b));
-    int nd = Next[bd];
-    if (nd < 0)
-      return -1;
-    Next[bd] = Next[nd];
-    if (Next[nd] != -1)
-      Pre[Next[nd]] = bd;
-    Pre[nd] = Next[nd] = -1;
-    return node_reid(nd);
+    if (mx(b) < 0) return -1;
+    assert(mp[b].count(mx(b)));
+    int ret = *(mp[b].at(mx(b)).begin());
+    mp[b].at(mx(b)).erase(ret);
+    return ret;
+    // int bd = bucket_id(b, mx(b));
+    // int nd = Next[bd];
+    // if (nd < 0)
+    //   return -1;
+    // Next[bd] = Next[nd];
+    // if (Next[nd] != -1)
+    //   Pre[Next[nd]] = bd;
+    // Pre[nd] = Next[nd] = -1;
+    // return node_reid(nd);
   }
   void remove(int v) {
-    int nd = node_id(v);
-    Next[Pre[nd]] = Next[nd];
-    if (Next[nd] != -1)
-      Pre[Next[nd]] = nd;
+    assert(Gain.count(v));
+    assert(mp[Gain.at(v).first].count(Gain.at(v).second));
+    mp[Gain.at(v).first].at(Gain.at(v).second).erase(v);
+    // int nd = node_id(v);
+    // Next[Pre[nd]] = Next[nd];
+    // if (Next[nd] != -1)
+    //   Pre[Next[nd]] = nd;
   }
   void add(int v, int b, int id) {
-    int nd = node_id(v);
-    int bd = bucket_id(b, id);
-    if (Next[bd] != -1)
-      Pre[Next[bd]] = nd;
-    Next[nd] = Next[bd];
-    Next[bd] = nd;
-    Pre[nd] = bd;
-    Mx[b] = max(Mx[b], id);
+    Gain[v] = make_pair(b, id);
+    mp[b][id].insert(v);
+    // int nd = node_id(v);
+    // int bd = bucket_id(b, id);
+    // if (Next[bd] != -1)
+    //   Pre[Next[bd]] = nd;
+    // Next[nd] = Next[bd];
+    // Next[bd] = nd;
+    // Pre[nd] = bd;
+    // Mx[b] = max(Mx[b], id);
   }
 };
 inline bool range(int v, int L, int R) { return L <= v && v <= R; }
@@ -145,14 +163,14 @@ int main(int argv, char *argc[]) {
       Nets[i].push_back(v - 1), Cells[v - 1].push_back(i);
     P += Nets[i].size();
   }
-  int run = min(max(1, (int)5e8 / P), 16);
+  int run = 16;
   vector<vector<bool>> Partition(run, vector<bool>(N));
   vector<int> CntCut(run, M + 10);
 #pragma omp parallel for
   for (int i = 0; i < run; ++i) {
     vector<bool> tmp(N);
     genRandomBit(tmp);
-    for (int k = 0; k < 20; ++k) {
+    for (int k = 0; k < 50; ++k) {
       int cut = FM(tmp, P);
       if (cut < CntCut[i])
         CntCut[i] = cut, Partition[i] = tmp;
