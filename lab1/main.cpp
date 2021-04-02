@@ -31,7 +31,7 @@ vector<vector<int>> Nets;
 vector<vector<int>> Cells;
 int FM(vector<bool> &Partition, const int P) {
   int N = Cells.size(), M = Nets.size();
-  int M1 = ceil(N * 0.46), M2 = floor(N * 0.54);
+  int M1 = ceil(N * 0.455), M2 = floor(N * 0.545);
   vector<bool> Lock(N);
   vector<int> Gain(N), CntCell[2];
   CntCell[0].resize(M), CntCell[1].resize(M);
@@ -130,11 +130,13 @@ int main(int argv, char *argc[]) {
   int run = 16;
   vector<vector<bool>> Partition(run, vector<bool>(N));
   vector<int> CntCut(run, M + 10);
+  for (int i = 0; i < run; ++i)
+      genRandomBit(Partition[i]);
 #pragma omp parallel for
   for (int i = 0; i < run; ++i) {
-    vector<bool> tmp(N);
-    genRandomBit(tmp);
-    for (int k = 0; k < 50; ++k) {
+    vector<bool> tmp(Partition[i].begin(), Partition[i].end());
+    int times = 150;
+    for (int k = 0; k < times; ++k) {
       int cut = FM(tmp, P);
       if (cut < CntCut[i])
         CntCut[i] = cut, Partition[i] = tmp;
