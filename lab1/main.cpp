@@ -31,7 +31,7 @@ vector<vector<int>> Nets;
 vector<vector<int>> Cells;
 int FM(vector<bool> &Partition, const int P) {
   int N = Cells.size(), M = Nets.size();
-  int M1 = ceil(N * 0.455), M2 = floor(N * 0.545);
+  int M1 = ceil(N * 0.451), M2 = floor(N * 0.549);
   vector<bool> Lock(N);
   vector<int> Gain(N), CntCell[2];
   CntCell[0].resize(M), CntCell[1].resize(M);
@@ -105,17 +105,21 @@ int FM(vector<bool> &Partition, const int P) {
   }
   return ret;
 }
-unsigned seed = 112098;
-inline void genRandomBit(vector<bool> &v) {
-  fill(v.begin(), v.begin() + (v.size() >> 1), 1);
-  shuffle(v.begin(), v.end(), std::default_random_engine(seed));
+
+inline void genRandomBit(vector<bool> &v, unsigned int &seed) {
+  int sz = v.size();
+  v.clear();
+  v.resize(sz);
+  fill(v.begin(), v.begin() + (sz >> 1), 1);
+  auto random = std::default_random_engine(seed);
+  shuffle(v.begin(), v.end(), random);
+  seed = random();
 }
 int main(int argv, char *argc[]) {
   auto StartTime = std::chrono::system_clock::now();
   freopen(argc[1], "r", stdin);
   freopen("output.txt", "w", stdout);
   ios::sync_with_stdio(0), cin.tie(0);
-  // seed = std::chrono::system_clock::now().time_since_epoch().count();
   int N, M, P = 0;
   cin >> M >> N;
   Nets.resize(M), Cells.resize(N);
@@ -129,16 +133,30 @@ int main(int argv, char *argc[]) {
     P += Nets[i].size();
   }
   int run = 16;
+  srand(112098);
+  vector<unsigned int> Seeds(run);
+  for (int i = 0; i < run; i++)
+      Seeds[i] = rand();
   vector<vector<bool>> Partition(run, vector<bool>(N));
   vector<int> CntCut(run, M + 10);
-  for (int i = 0; i < run; ++i)
-    genRandomBit(Partition[i]);
 #pragma omp parallel for
   for (int i = 0; i < run; ++i) {
-    vector<bool> tmp(Partition[i].begin(), Partition[i].end());
+    vector<bool> tmp(N);
+    genRandomBit(tmp, Seeds[i]);
+    deque<int> buffer;
+    int buffer_avg = 0;
+    const int buffer_size = 10;
     while (1) {
       int cut = FM(tmp, P);
-      if (cut < CntCut[i])
+      buffer.emplace_back(cut);
+      buffer_avg += cut;
+      if(buffer.size() > buffer_size){
+        buffer_avg -= buffer.front();
+        buffer.pop_front();
+      }
+      if(buffer.size() == buffer_size && cut * buffer.size() >= buffer_avg)
+          genRandomBit(tmp, Seeds[i]);
+      else if (cut < CntCut[i])
         CntCut[i] = cut, Partition[i] = tmp;
       auto CurrentTime = std::chrono::system_clock::now();
       if (CurrentTime - StartTime > std::chrono::seconds(80))
