@@ -136,7 +136,7 @@ int main(int argv, char *argc[]) {
   srand(112098);
   vector<unsigned int> Seeds(run);
   for (int i = 0; i < run; i++)
-      Seeds[i] = rand();
+    Seeds[i] = rand();
   vector<vector<bool>> Partition(run, vector<bool>(N));
   vector<int> CntCut(run, M + 10);
 #pragma omp parallel for
@@ -150,12 +150,12 @@ int main(int argv, char *argc[]) {
       int cut = FM(tmp, P);
       buffer.emplace_back(cut);
       buffer_avg += cut;
-      if(buffer.size() > buffer_size){
+      if (buffer.size() > buffer_size) {
         buffer_avg -= buffer.front();
         buffer.pop_front();
       }
-      if(buffer.size() == buffer_size && cut * buffer.size() >= buffer_avg)
-          genRandomBit(tmp, Seeds[i]);
+      if (buffer.size() == buffer_size && cut * buffer.size() >= buffer_avg)
+        genRandomBit(tmp, Seeds[i]);
       else if (cut < CntCut[i])
         CntCut[i] = cut, Partition[i] = tmp;
       auto CurrentTime = std::chrono::system_clock::now();
