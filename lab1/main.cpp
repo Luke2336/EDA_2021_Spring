@@ -111,6 +111,7 @@ inline void genRandomBit(vector<bool> &v) {
   shuffle(v.begin(), v.end(), std::default_random_engine(seed));
 }
 int main(int argv, char *argc[]) {
+  auto StartTime = std::chrono::system_clock::now();
   freopen(argc[1], "r", stdin);
   freopen("output.txt", "w", stdout);
   ios::sync_with_stdio(0), cin.tie(0);
@@ -131,15 +132,17 @@ int main(int argv, char *argc[]) {
   vector<vector<bool>> Partition(run, vector<bool>(N));
   vector<int> CntCut(run, M + 10);
   for (int i = 0; i < run; ++i)
-      genRandomBit(Partition[i]);
+    genRandomBit(Partition[i]);
 #pragma omp parallel for
   for (int i = 0; i < run; ++i) {
     vector<bool> tmp(Partition[i].begin(), Partition[i].end());
-    int times = 150;
-    for (int k = 0; k < times; ++k) {
+    while (1) {
       int cut = FM(tmp, P);
       if (cut < CntCut[i])
         CntCut[i] = cut, Partition[i] = tmp;
+      auto CurrentTime = std::chrono::system_clock::now();
+      if (CurrentTime - StartTime > std::chrono::seconds(80))
+        break;
     }
   }
   int ans = 0;
