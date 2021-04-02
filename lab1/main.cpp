@@ -87,7 +87,9 @@ int FM(vector<bool> &Partition, const int P) {
     BL.add(i, Partition[i], Gain[i] + P);
   vector<int> sumGain;
   vector<int> swapNode;
-  int sz[2] = {N >> 1, N - (N >> 1)};
+  int sz[2] = {};
+  for (auto i : Partition)
+      sz[i]++;
   for (int t = 0; t < N; ++t) {
     bool b;
     if (range(sz[0] - 1, M1, M2) && BL.mx(0) >= BL.mx(1))
