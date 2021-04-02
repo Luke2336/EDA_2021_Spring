@@ -1,6 +1,6 @@
 # Two-Way Partition
 
-## Build
+## Build & Run
 
 ```sh
 make
@@ -10,6 +10,8 @@ make
 
 ## Method
 
-- Fiduccia–Mattheyses algorithm
-    - Generate initial partition randomly
-    - Use OpneMP run $\min(10^5, \displaystyle\frac{5 \times 10^8}{P})$ times F-M algorithm, where $P$ is the sum of degrees.
+- 跑 80 秒。
+- 使用 openMP 開 16 個 thread。
+- 使用 Fiduccia–Mattheyses algorithm
+    - 隨機產生 balanced partition
+    - 將 FM 的結果跑到 cut 數量收斂，再重新回到上一步。
