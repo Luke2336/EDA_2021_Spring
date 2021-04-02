@@ -123,7 +123,7 @@ int FM(vector<bool> &Partition, const int P) {
   }
   return ret;
 }
-unsigned seed;
+unsigned seed = 112098;
 inline void genRandomBit(vector<bool> &v) {
   fill(v.begin(), v.begin() + (v.size() >> 1), 1);
   shuffle(v.begin(), v.end(), std::default_random_engine(seed));
@@ -132,7 +132,7 @@ int main(int argv, char *argc[]) {
   freopen(argc[1], "r", stdin);
   freopen("output.txt", "w", stdout);
   ios::sync_with_stdio(0), cin.tie(0);
-  seed = std::chrono::system_clock::now().time_since_epoch().count();
+  // seed = std::chrono::system_clock::now().time_since_epoch().count();
   int N, M, P = 0;
   cin >> M >> N;
   Nets.resize(M), Cells.resize(N);
@@ -145,13 +145,18 @@ int main(int argv, char *argc[]) {
       Nets[i].push_back(v - 1), Cells[v - 1].push_back(i);
     P += Nets[i].size();
   }
-  int run = min(max(1, (int)5e8 / P), (int)1e5);
+  int run = min(max(1, (int)5e8 / P), 16);
   vector<vector<bool>> Partition(run, vector<bool>(N));
-  vector<int> CntCut(run);
+  vector<int> CntCut(run, M + 10);
 #pragma omp parallel for
   for (int i = 0; i < run; ++i) {
-    genRandomBit(Partition[i]);
-    CntCut[i] = FM(Partition[i], P);
+    vector<bool> tmp(N);
+    genRandomBit(tmp);
+    for (int k = 0; k < 20; ++k) {
+      int cut = FM(tmp, P);
+      if (cut < CntCut[i])
+        CntCut[i] = cut, Partition[i] = tmp;
+    }
   }
   int ans = 0;
   for (int i = 1; i < run; ++i)
