@@ -1,72 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
-vector<vector<int>> Nets;
-vector<vector<int>> Cells;
 class BucketList {
-  // vector<int> Next, Pre;
-  int P, maxP, n, Mx[2];
-  // int node_id(int v) { return (maxP << 1) + v; }
-  // int node_reid(int i) { return i - (maxP << 1); }
-  // int bucket_id(int b, int id) { return b ? maxP + id : id; }
-
   map<int, unordered_set<int>> mp[2];
   unordered_map<int, pair<int, int>> Gain;
 
 public:
-  BucketList(int P, int n) : P(P), n(n), maxP((P << 1) | 1) {
-    // Mx[0] = Mx[1] = -1;
-    // Next.resize((maxP << 1) + n, -1);
-    // Pre.resize(Next.size(), -1);
-  }
+  BucketList() {}
   int mx(int b) {
     while (mp[b].size() && mp[b].rbegin()->second.empty())
       mp[b].erase(mp[b].rbegin()->first);
-    if (mp[b].size() == 0) return -1;
-    assert(mp[b].size() > 0);
+    if (mp[b].size() == 0)
+      return -1;
     return mp[b].rbegin()->first;
-    // while (Mx[b] > 0 && Next[bucket_id(b, Mx[b])] == -1)
-    //   --Mx[b];
-    // return Mx[b];
   }
   int pop(int b) {
-    if (mx(b) < 0) return -1;
-    assert(mp[b].count(mx(b)));
+    if (mx(b) < 0)
+      return -1;
     int ret = *(mp[b].at(mx(b)).begin());
     mp[b].at(mx(b)).erase(ret);
     return ret;
-    // int bd = bucket_id(b, mx(b));
-    // int nd = Next[bd];
-    // if (nd < 0)
-    //   return -1;
-    // Next[bd] = Next[nd];
-    // if (Next[nd] != -1)
-    //   Pre[Next[nd]] = bd;
-    // Pre[nd] = Next[nd] = -1;
-    // return node_reid(nd);
   }
-  void remove(int v) {
-    assert(Gain.count(v));
-    assert(mp[Gain.at(v).first].count(Gain.at(v).second));
-    mp[Gain.at(v).first].at(Gain.at(v).second).erase(v);
-    // int nd = node_id(v);
-    // Next[Pre[nd]] = Next[nd];
-    // if (Next[nd] != -1)
-    //   Pre[Next[nd]] = nd;
-  }
+  void remove(int v) { mp[Gain.at(v).first].at(Gain.at(v).second).erase(v); }
   void add(int v, int b, int id) {
     Gain[v] = make_pair(b, id);
     mp[b][id].insert(v);
-    // int nd = node_id(v);
-    // int bd = bucket_id(b, id);
-    // if (Next[bd] != -1)
-    //   Pre[Next[bd]] = nd;
-    // Next[nd] = Next[bd];
-    // Next[bd] = nd;
-    // Pre[nd] = bd;
-    // Mx[b] = max(Mx[b], id);
   }
 };
 inline bool range(int v, int L, int R) { return L <= v && v <= R; }
+vector<vector<int>> Nets;
+vector<vector<int>> Cells;
 int FM(vector<bool> &Partition, const int P) {
   int N = Cells.size(), M = Nets.size();
   int M1 = ceil(N * 0.46), M2 = floor(N * 0.54);
@@ -82,14 +44,14 @@ int FM(vector<bool> &Partition, const int P) {
       else if (CntCell[Partition[j]][i] == 1)
         ++Gain[j];
   }
-  BucketList BL(P, N);
+  BucketList BL;
   for (int i = 0; i < N; i++)
-    BL.add(i, Partition[i], Gain[i] + P);
+    BL.add(i, Partition[i], Gain[i]);
   vector<int> sumGain;
   vector<int> swapNode;
   int sz[2] = {};
   for (auto i : Partition)
-      sz[i]++;
+    sz[i]++;
   for (int t = 0; t < N; ++t) {
     bool b;
     if (range(sz[0] - 1, M1, M2) && BL.mx(0) >= BL.mx(1))
@@ -103,7 +65,7 @@ int FM(vector<bool> &Partition, const int P) {
     else
       break;
     --sz[b], ++sz[!b];
-    sumGain.push_back(BL.mx(b) - P);
+    sumGain.push_back(BL.mx(b));
     int node = BL.pop(b);
     if (node < 0)
       break;
@@ -116,10 +78,10 @@ int FM(vector<bool> &Partition, const int P) {
           continue;
         if (!CntCell[b][i] && Partition[v] != b) {
           BL.remove(v);
-          BL.add(v, !b, (--Gain[v]) + P);
+          BL.add(v, !b, --Gain[v]);
         } else if (CntCell[b][i] == 1 && Partition[v] == b) {
           BL.remove(v);
-          BL.add(v, b, (++Gain[v]) + P);
+          BL.add(v, b, ++Gain[v]);
         }
       }
     }
