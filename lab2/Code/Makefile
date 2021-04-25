@@ -1,6 +1,6 @@
 CXX := g++
 TARGET := 0710006_lab2.o
-CXXFLAGS := -std=c++17 -Wall -Wextra -O3
+CXXFLAGS := -std=c++17 -Wall -Wextra -O3 -fopenmp
 SRC_DIRS := .
 SRCS := $(wildcard $(SRC_DIRS:=/*.cpp))
 DEPS := $(SRCS:.cpp=.d)
