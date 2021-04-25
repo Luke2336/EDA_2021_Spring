@@ -5,6 +5,7 @@
 using namespace std;
 
 struct Grid {
+  int x, y;
   unordered_set<const Net *> Nets;
   bool IsBlock;
   Grid() : IsBlock(false) {}
@@ -22,6 +23,9 @@ struct RouterContext {
   RouterContext(const RawInput *RawInputPtr)
       : FinishRoute(false), RawInputPtr(RawInputPtr) {
     Grids.resize(RawInputPtr->Col, vector<Grid>(RawInputPtr->Row));
+    for (int x = 0; x < RawInputPtr->Col; ++x)
+      for (int y = 0; y < RawInputPtr->Row; ++y)
+        Grids[x][y].x = x, Grids[x][y].y = y;
     for (auto Block : RawInputPtr->Blocks) {
       for (int x = Block.Left; x <= Block.Right; ++x)
         for (int y = Block.Down; y <= Block.Up; ++y)
@@ -63,9 +67,13 @@ struct RouterContext {
   void to_ostream(ostream &out) const {
     for (auto &NT : GridInNet) {
       auto &NetPtr = NT.first;
-      out << NetPtr->Name << "\n";
+      out << NetPtr->Name << '\n';
       out << "begin\n";
-      out << NT.second.size() - 2 << "\n";
+      out << NT.second.size() - 2 << '\n';
+      auto &Path = NT.second;
+      for (size_t i = 1; i < Path.size(); ++i)
+        out << Path[i - 1]->x << ' ' << Path[i - 1]->y << ' ' << Path[i]->x
+            << ' ' << Path[i]->y << '\n';
       out << "end\n";
     }
   }

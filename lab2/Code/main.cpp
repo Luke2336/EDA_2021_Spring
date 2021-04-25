@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     Context[r] = RouterContext(RawInputPtr.get());
     Router router(&Context[r], seed[r]);
     router.route();
-    cerr << r << " : " << Context[r].overflow() << "\n";
+    // cerr << r << " : " << Context[r].overflow() << "\n";
     Context[r].calculateLength();
   }
   RouterContext *BestContext = min_element(Context, Context + RUN);
