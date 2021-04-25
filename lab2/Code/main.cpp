@@ -37,6 +37,9 @@ int main(int argc, char *argv[]) {
     Router router(&Context[r], seed[r]);
     router.route();
     cerr << r << " : " << Context[r].overflow() << "\n";
+    Context[r].calculateLength();
   }
+  RouterContext *BestContext = min_element(Context, Context + RUN);
+  BestContext->to_ostream(cout);
   return 0;
 }

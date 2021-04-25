@@ -11,13 +11,16 @@ struct Grid {
 };
 
 struct RouterContext {
+  bool FinishRoute;
   vector<vector<Grid>> Grids;
   unordered_map<const Net *, vector<Grid *>> GridInNet;
+  long long Length;
   const RawInput *RawInputPtr;
 
-  RouterContext() : RawInputPtr(nullptr) {}
+  RouterContext() : FinishRoute(false), RawInputPtr(nullptr) {}
 
-  RouterContext(const RawInput *RawInputPtr) : RawInputPtr(RawInputPtr) {
+  RouterContext(const RawInput *RawInputPtr)
+      : FinishRoute(false), RawInputPtr(RawInputPtr) {
     Grids.resize(RawInputPtr->Col, vector<Grid>(RawInputPtr->Row));
     for (auto Block : RawInputPtr->Blocks) {
       for (int x = Block.Left; x <= Block.Right; ++x)
@@ -38,13 +41,32 @@ struct RouterContext {
     GridInNet.erase(NetPtr);
   }
 
-  int overflow() {
+  int overflow() const {
     int Cnt = 0;
-    for (auto v : Grids) {
-      for (auto &g : v) {
+    for (const auto &v : Grids)
+      for (const auto &g : v)
         Cnt += (g.Nets.size() > 1) ? (g.Nets.size() - 1) : 0;
-      }
-    }
     return Cnt;
+  }
+
+  void calculateLength() {
+    Length = 0;
+    for (auto &NT : GridInNet) {
+      Length += NT.second.size();
+    }
+    if (!FinishRoute)
+      Length = numeric_limits<long long>().max();
+  }
+
+  bool operator<(const RouterContext &R) const { return Length < R.Length; }
+
+  void to_ostream(ostream &out) const {
+    for (auto &NT : GridInNet) {
+      auto &NetPtr = NT.first;
+      out << NetPtr->Name << "\n";
+      out << "begin\n";
+      out << NT.second.size() - 2 << "\n";
+      out << "end\n";
+    }
   }
 };

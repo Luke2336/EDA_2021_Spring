@@ -1,11 +1,13 @@
 #pragma once
 #include "RouterContext.hpp"
+#include "Timer.hpp"
 #include <bits/stdc++.h>
 using namespace std;
 
 class Router {
   RouterContext *ContextPtr;
   unsigned RandSeed;
+  default_random_engine Random;
 
   vector<Grid *> routeOneNet(const Net *NetPtr) {
     const int dx[4] = {-1, 1, 0, 0};
@@ -38,7 +40,8 @@ class Router {
         int NewY = P.y + dy[di];
         Point NewP(NewX, NewY);
         auto inRange = [&](int x, int limit) { return 0 <= x && x < limit; };
-        if (!inRange(NewX, Col) || !inRange(NewY, Row))
+        if (!inRange(NewX, Col) || !inRange(NewY, Row) ||
+            ContextPtr->Grids[NewX][NewY].IsBlock)
           continue;
         double NewDis = Dis[P.x][P.y] + 1 + cost(NewP);
         if (NewDis < Dis[NewX][NewY]) {
@@ -64,11 +67,11 @@ class Router {
     return weight(a) < weight(b);
   }
 
-  void firstRoute() { // TODO
+  void firstRoute() {
     vector<const Net *> NetPtrs(ContextPtr->RawInputPtr->Nets.size());
     for (size_t i = 0; i < ContextPtr->RawInputPtr->Nets.size(); ++i)
       NetPtrs[i] = &ContextPtr->RawInputPtr->Nets[i];
-    shuffle(NetPtrs.begin(), NetPtrs.end(), default_random_engine(RandSeed));
+    shuffle(NetPtrs.begin(), NetPtrs.end(), Random);
     sort(NetPtrs.begin(), NetPtrs.end(), cmp);
     for (auto NetPtr : NetPtrs) {
       ContextPtr->addNet(NetPtr, routeOneNet(NetPtr));
@@ -76,14 +79,42 @@ class Router {
   }
 
   bool reroute() {
-    // TODO
+    auto Timer = GlobalTimer::getInstance();
+    vector<Grid *> OverflowGrids;
+    for (auto &v : ContextPtr->Grids)
+      for (auto &g : v)
+        if (g.Nets.size() > 1)
+          OverflowGrids.emplace_back(&g);
+    if (OverflowGrids.size() == 0)
+      return ContextPtr->FinishRoute = true;
+    shuffle(OverflowGrids.begin(), OverflowGrids.end(), Random);
+    for (auto GridPtr : OverflowGrids) {
+      if (Timer->overTime())
+        return false;
+      vector<const Net *> Nets(GridPtr->Nets.begin(), GridPtr->Nets.end());
+      if (Random() % 10)
+        sort(Nets.begin(), Nets.end(), cmp);
+      else
+        shuffle(Nets.begin(), Nets.end(), Random);
+      for (auto n : Nets)
+        ContextPtr->removeNet(n);
+      for (auto NetPtr : Nets) {
+        ContextPtr->addNet(NetPtr, routeOneNet(NetPtr));
+      }
+    }
+    return false;
   }
 
 public:
   Router(RouterContext *ContextPtr, int seed)
-      : ContextPtr(ContextPtr), RandSeed(seed) {}
+      : ContextPtr(ContextPtr), RandSeed(seed), Random(RandSeed) {}
 
-  bool route() { // TODO
+  void route() {
     firstRoute();
+    auto Timer = GlobalTimer::getInstance();
+    while (!Timer->overTime()) {
+      if (reroute())
+        break;
+    }
   }
 };
