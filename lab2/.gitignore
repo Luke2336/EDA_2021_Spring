@@ -1,0 +1,5 @@
+.vscode
+*.d
+Code
+!Code/
+.DS_Store
