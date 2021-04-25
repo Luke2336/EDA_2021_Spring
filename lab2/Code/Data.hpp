@@ -4,10 +4,10 @@ using namespace std;
 
 struct Point {
   int x, y;
-  Point() {}
+  Point() : x(-1), y(-1) {}
   Point(int x, int y) : x(x), y(y) {}
   bool operator<(const Point &p) const {
-    return x < p.x || x == p.x && y < p.y;
+    return x < p.x || (x == p.x && y < p.y);
   }
   bool operator==(const Point &p) const { return x == p.x && y == p.y; }
   bool operator!=(const Point &p) const { return x != p.x || y != p.y; }
@@ -22,7 +22,8 @@ struct Block {
 };
 
 struct Net {
+  string Name;
   Point Src, Tar;
   Net() {}
-  Net(Point S, Point T) : Src(S), Tar(T) {}
+  Net(string Name, Point S, Point T) : Name(Name), Src(S), Tar(T) {}
 };

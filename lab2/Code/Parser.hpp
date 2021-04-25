@@ -32,9 +32,10 @@ public:
     cin >> NumNet;
     vector<Net> Nets;
     for (int i = 0; i < NumNet; ++i) {
+      string name;
       int x1, y1, x2, y2;
-      cin >> x1 >> y1 >> x2 >> y2;
-      Nets.emplace_back(Point(x1, y1), Point(x2, y2));
+      cin >> name >> x1 >> y1 >> x2 >> y2;
+      Nets.emplace_back(name, Point(x1, y1), Point(x2, y2));
     }
     return make_unique<RawInput>(Row, Col, move(Blocks), move(Nets));
   }
