@@ -22,7 +22,7 @@ class Router {
     auto cost = [&](Point P) {
       const auto &Grid = ContextPtr->Grids[P.x][P.y];
       double overflow = Grid.Nets.size();
-      const double parameter = Row * Col; // TODO
+      const double parameter = Row * Col;
       return parameter * overflow * overflow;
     };
     Dis[NetPtr->Src.x][NetPtr->Src.y] = 0;

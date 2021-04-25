@@ -32,10 +32,10 @@ int main(int argc, char *argv[]) {
   RouterContext Context[RUN];
 #pragma omp parallel for
   for (int r = 0; r < RUN; ++r) {
-      Context[r] = RouterContext(RawInputPtr.get());
-      Router router(&Context[r], seed[r]);
-      router.route();
-      Context[r].calculateLength();
+    Context[r] = RouterContext(RawInputPtr.get());
+    Router router(&Context[r], seed[r]);
+    router.route();
+    Context[r].calculateLength();
   }
   RouterContext *BestContext = min_element(Context, Context + RUN);
   BestContext->to_ostream(cout);
