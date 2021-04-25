@@ -18,7 +18,9 @@ struct RouterContext {
   long long Length;
   const RawInput *RawInputPtr;
 
-  RouterContext() : FinishRoute(false), RawInputPtr(nullptr) {}
+  RouterContext() : FinishRoute(false), RawInputPtr(nullptr) {
+    calculateLength();
+  }
 
   RouterContext(const RawInput *RawInputPtr)
       : FinishRoute(false), RawInputPtr(RawInputPtr) {
