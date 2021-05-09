@@ -1,6 +1,8 @@
 #include "Context.hpp"
 #include "Parser.hpp"
+#include "Solver.hpp"
 #include <cassert>
+#include <iostream>
 #include <string>
 #include <vector>
 int main(int argc, char *argv[]) {
@@ -13,7 +15,10 @@ int main(int argc, char *argv[]) {
   Parser P;
   std::vector<std::vector<Variable>> Equation;
   double Prob[26];
-  P.parser(Prob, Equation);
-  Context SolverContext(Prob, Equation);
+  std::vector<int> Vars;
+  P.parser(Prob, Equation, Vars);
+  Context SolverContext(Prob, Equation, Vars);
+  Solver MySolver(&SolverContext);
+  MySolver.solve();
   return 0;
 }

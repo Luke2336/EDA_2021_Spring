@@ -77,7 +77,7 @@ Final size: 11
 total time = 0.00 sec
 Runtime Statistics
 ------------------
-Machine name: Kellyde-MacBook-Air.local
+Machine name: Kellyde-Air
 User time      0.0 seconds
 System time    0.0 seconds
 
@@ -86,10 +86,10 @@ Average resident data+stack size =     0K
 Maximum resident size            = 4300800K
 
 Virtual memory limit             = unlimited (unlimited)
-Major page faults = 0
-Minor page faults = 1183
+Major page faults = 61
+Minor page faults = 1124
 Swaps = 0
 Input blocks = 0
-Output blocks = 1
-Context switch (voluntary) = 1
-Context switch (involuntary) = 36
+Output blocks = 2
+Context switch (voluntary) = 2
+Context switch (involuntary) = 13

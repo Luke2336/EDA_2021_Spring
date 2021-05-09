@@ -474,15 +474,15 @@ Peak number of live nodes: 2068734
 Number of BDD variables: 50
 Number of ZDD variables: 0
 Number of cache entries: 2097152
-Number of cache look-ups: 57193366
-Number of cache hits: 32461862
-Number of cache insertions: 24731438
-Number of cache collisions: 17160421
-Number of cache deletions: 7341161
+Number of cache look-ups: 57186053
+Number of cache hits: 32475613
+Number of cache insertions: 24710364
+Number of cache collisions: 17144298
+Number of cache deletions: 7335768
 Cache used slots = 99.98% (expected 100.00%)
 Soft limit for cache size: 2796202
 Number of buckets in unique table: 1795072
-Used buckets in unique table: 5.76% (expected 5.77%)
+Used buckets in unique table: 5.77% (expected 5.77%)
 Number of BDD and ADD nodes: 193317
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 140806
@@ -490,26 +490,26 @@ Number of dead ZDD nodes: 0
 Total number of nodes allocated: 15634687
 Total number of nodes reclaimed: 8157933
 Garbage collections so far: 7
-Time for garbage collection: 1.25 sec
+Time for garbage collection: 1.15 sec
 Reorderings so far: 0
 Time for reordering: 0.00 sec
 Final size: 869
-total time = 29.36 sec
+total time = 26.93 sec
 Runtime Statistics
 ------------------
-Machine name: Kellyde-MacBook-Air.local
-User time     28.9 seconds
-System time    0.4 seconds
+Machine name: Kellyde-Air
+User time     26.6 seconds
+System time    0.3 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            = 295329792K
+Maximum resident size            = 297172992K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 82945
+Minor page faults = 81344
 Swaps = 0
 Input blocks = 0
-Output blocks = 3
-Context switch (voluntary) = 3
-Context switch (involuntary) = 35529
+Output blocks = 4
+Context switch (voluntary) = 1
+Context switch (involuntary) = 12389

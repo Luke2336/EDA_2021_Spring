@@ -612,9 +612,9 @@ Reached[150]: 95 nodes 1 leaves 8865 minterms
 8865
 depth = 150
 R: 95 nodes 1 leaves 8865 minterms
-Building transition relation. Time = 0.03 sec
+Building transition relation. Time = 0.04 sec
 Transition relation: 21 parts 21 latches 229 nodes
-Computing SCCs. Time = 0.03 sec
+Computing SCCs. Time = 0.04 sec
 S0: 22 nodes 1 leaves 1 minterms
 From[1]: 40 nodes 1 leaves 5 minterms
 Reached[1]: 56 nodes 1 leaves 6 minterms
@@ -3210,42 +3210,42 @@ Peak number of live nodes: 3927
 Number of BDD variables: 87
 Number of ZDD variables: 0
 Number of cache entries: 131072
-Number of cache look-ups: 1256809
-Number of cache hits: 372026
-Number of cache insertions: 915328
-Number of cache collisions: 455031
-Number of cache deletions: 352571
-Cache used slots = 94.63% (expected 94.80%)
+Number of cache look-ups: 1256365
+Number of cache hits: 372168
+Number of cache insertions: 914749
+Number of cache collisions: 453174
+Number of cache deletions: 353476
+Cache used slots = 94.76% (expected 94.82%)
 Soft limit for cache size: 332800
 Number of buckets in unique table: 83200
-Used buckets in unique table: 64.17% (expected 64.12%)
+Used buckets in unique table: 64.48% (expected 64.12%)
 Number of BDD and ADD nodes: 129633
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 129368
 Number of dead ZDD nodes: 0
 Total number of nodes allocated: 1105734
-Total number of nodes reclaimed: 687885
+Total number of nodes reclaimed: 688545
 Garbage collections so far: 10
-Time for garbage collection: 0.05 sec
+Time for garbage collection: 0.02 sec
 Reorderings so far: 0
 Time for reordering: 0.00 sec
 Final size: 168
-total time = 0.38 sec
+total time = 0.51 sec
 Runtime Statistics
 ------------------
-Machine name: Kellyde-MacBook-Air.local
-User time      0.4 seconds
+Machine name: Kellyde-Air
+User time      0.5 seconds
 System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            = 15958016K
+Maximum resident size            = 15970304K
 
 Virtual memory limit             = unlimited (unlimited)
-Major page faults = 0
-Minor page faults = 4024
+Major page faults = 4
+Minor page faults = 4022
 Swaps = 0
 Input blocks = 0
-Output blocks = 1
+Output blocks = 5
 Context switch (voluntary) = 2
-Context switch (involuntary) = 233
+Context switch (involuntary) = 1034

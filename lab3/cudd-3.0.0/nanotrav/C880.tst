@@ -15,7 +15,7 @@ Order before final reordering
 159GAT(40) 228GAT(51) 237GAT(52) 246GAT(53) 73GAT(13) 72GAT(12) 68GAT(11) 13GAT(2) 
 260GAT(56) 267GAT(58) 259GAT(55) 255GAT(54) 
 Number of inputs = 60
-BDD reordering with sifting: from 6204 to ... 4623 nodes in 0.02 sec
+BDD reordering with sifting: from 6204 to ... 4623 nodes in 0.03 sec
 New order
 135GAT(32) 207GAT(48) 130GAT(31) 86GAT(18) 85GAT(17) 89GAT(21) 90GAT(22) 88GAT(20) 
 87GAT(19) 1GAT(0) 51GAT(8) 26GAT(4) 268GAT(59) 29GAT(5) 80GAT(16) 59GAT(10) 
@@ -54,15 +54,15 @@ Peak number of live nodes: 12568
 Number of BDD variables: 60
 Number of ZDD variables: 0
 Number of cache entries: 65536
-Number of cache look-ups: 59169
-Number of cache hits: 28631
-Number of cache insertions: 30617
-Number of cache collisions: 2532
-Number of cache deletions: 28085
-Cache used slots = 18.16% (expected 0.00%)
+Number of cache look-ups: 59157
+Number of cache hits: 28632
+Number of cache insertions: 30604
+Number of cache collisions: 2543
+Number of cache deletions: 28061
+Cache used slots = 18.02% (expected 0.00%)
 Soft limit for cache size: 62464
 Number of buckets in unique table: 15616
-Used buckets in unique table: 21.04% (expected 20.96%)
+Used buckets in unique table: 20.99% (expected 20.96%)
 Number of BDD and ADD nodes: 4671
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 0
@@ -72,24 +72,24 @@ Total number of nodes reclaimed: 1974
 Garbage collections so far: 5
 Time for garbage collection: 0.00 sec
 Reorderings so far: 5
-Time for reordering: 0.13 sec
+Time for reordering: 0.14 sec
 Final size: 4623
-total time = 0.14 sec
+total time = 0.15 sec
 Runtime Statistics
 ------------------
-Machine name: Kellyde-MacBook-Air.local
-User time      0.1 seconds
+Machine name: Kellyde-Air
+User time      0.2 seconds
 System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            = 7294976K
+Maximum resident size            = 7274496K
 
 Virtual memory limit             = unlimited (unlimited)
-Major page faults = 0
-Minor page faults = 1909
+Major page faults = 3
+Minor page faults = 1900
 Swaps = 0
 Input blocks = 0
 Output blocks = 0
 Context switch (voluntary) = 2
-Context switch (involuntary) = 83
+Context switch (involuntary) = 211

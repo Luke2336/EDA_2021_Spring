@@ -68,7 +68,7 @@ Number of cache deletions: 0
 Cache used slots = 0.13% (expected 0.15%)
 Soft limit for cache size: 7168
 Number of buckets in unique table: 1792
-Used buckets in unique table: 1.56% (expected 1.60%)
+Used buckets in unique table: 1.51% (expected 1.60%)
 Number of BDD and ADD nodes: 29
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 17
@@ -83,17 +83,17 @@ Final size: 4
 total time = 0.00 sec
 Runtime Statistics
 ------------------
-Machine name: Kellyde-MacBook-Air.local
+Machine name: Kellyde-Air
 User time      0.0 seconds
 System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            = 4317184K
+Maximum resident size            = 4321280K
 
 Virtual memory limit             = unlimited (unlimited)
-Major page faults = 0
-Minor page faults = 1184
+Major page faults = 5
+Minor page faults = 1177
 Swaps = 0
 Input blocks = 0
 Output blocks = 0

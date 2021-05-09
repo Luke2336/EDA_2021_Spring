@@ -5,11 +5,14 @@ SRC_DIRS := .
 SRCS := $(wildcard $(SRC_DIRS:=/*.cpp))
 DEPS := $(SRCS:.cpp=.d)
 CUDD := ../cudd-3.0.0
+INCLUDE := -I $(CUDD)/cudd -I $(CUDD)/util -I $(CUDD)
+LINKER := $(CUDD)/cudd/.libs/libcudd.a -lm
+					
 
 all: $(TARGET)
 
 $(TARGET): main.cpp
-	$(CXX) $(CXXFLAGS) -I $(CUDD)/cudd -I $(CUDD)/util -I $(CUDD) -c main.cpp $(CUDD)/cudd/.libs/libcudd.a -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ $< $(LINKER)
 
 clean:
 	rm -rf $(TARGET) $(DEPS)
