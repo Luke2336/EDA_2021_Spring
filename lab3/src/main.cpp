@@ -19,6 +19,6 @@ int main(int argc, char *argv[]) {
   P.parser(Prob, Equation, Vars);
   Context SolverContext(Prob, Equation, Vars);
   Solver MySolver(&SolverContext);
-  MySolver.solve();
+  std::cout << MySolver.solve() << '\n';
   return 0;
 }
