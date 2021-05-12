@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.11.12)  6 MAY 2021 17:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.11.12)  12 MAY 2021 21:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -447,12 +447,12 @@ T1/cmr/m/n/10.95 ADD
 
 ]
 Overfull \hbox (6.03108pt too wide) in paragraph at lines 115--116
-[]\OT1/cmr/m/n/10.95 CUDD[]REORDER[]ANNEALING, []17[] 
+[]\OT1/cmr/m/n/10.95 CUDD[]REORDER[]ANNEALING, []19[] 
  []
 
 
 Overfull \hbox (7.69183pt too wide) in paragraph at lines 118--119
-[]\OT1/cmr/m/n/10.95 CUDD[]REORDER[]GROUP[]SIFT, []16[] 
+[]\OT1/cmr/m/n/10.95 CUDD[]REORDER[]GROUP[]SIFT, []18[] 
  []
 
 
@@ -462,7 +462,7 @@ Overfull \hbox (31.10054pt too wide) in paragraph at lines 119--120
 
 
 Overfull \hbox (6.1984pt too wide) in paragraph at lines 121--122
-[]\OT1/cmr/m/n/10.95 CUDD[]REORDER[]RANDOM, []15[], []19[] 
+[]\OT1/cmr/m/n/10.95 CUDD[]REORDER[]RANDOM, []17[], []21[] 
  []
 
 
@@ -477,7 +477,7 @@ Overfull \hbox (17.88142pt too wide) in paragraph at lines 125--126
 
 
 Overfull \hbox (4.57414pt too wide) in paragraph at lines 126--127
-[]\OT1/cmr/m/n/10.95 CUDD[]REORDER[]SYMM[]SIFT, []16[],
+[]\OT1/cmr/m/n/10.95 CUDD[]REORDER[]SYMM[]SIFT, []18[],
  []
 
 
@@ -537,7 +537,7 @@ e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 19/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2019
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2019/
 texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on cudd.pdf (46 pages, 393521 bytes).
+Output written on cudd.pdf (46 pages, 393367 bytes).
 PDF statistics:
  1084 PDF objects out of 1200 (max. 8388607)
  1005 compressed objects within 11 object streams

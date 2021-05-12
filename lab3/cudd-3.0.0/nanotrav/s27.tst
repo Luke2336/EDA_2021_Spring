@@ -54,7 +54,7 @@ Number of cache entries: 32768
 Number of cache look-ups: 151
 Number of cache hits: 30
 Number of cache insertions: 115
-Number of cache collisions: 1
+Number of cache collisions: 0
 Number of cache deletions: 24
 Cache used slots = 0.35% (expected 0.28%)
 Soft limit for cache size: 11264
@@ -74,19 +74,19 @@ Final size: 10
 total time = 0.00 sec
 Runtime Statistics
 ------------------
-Machine name: Kellyde-Air
+Machine name: Kellyde-Air.localdomain
 User time      0.0 seconds
 System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            = 4399104K
+Maximum resident size            = 4341760K
 
 Virtual memory limit             = unlimited (unlimited)
-Major page faults = 15
-Minor page faults = 1198
+Major page faults = 0
+Minor page faults = 1189
 Swaps = 0
 Input blocks = 0
 Output blocks = 2
-Context switch (voluntary) = 1
-Context switch (involuntary) = 23
+Context switch (voluntary) = 0
+Context switch (involuntary) = 15

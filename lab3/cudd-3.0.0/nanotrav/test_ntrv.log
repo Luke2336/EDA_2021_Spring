@@ -122,9 +122,9 @@ ok 12 miniFirst
 PASS: nanotrav/test_ntrv.test 12 miniFirst
 # executing nanotrav/nanotrav -p 1 -envelope ./nanotrav/rcn25.blif > ./nanotrav/rcn25.tst
 sed: illegal option -- r
-sed: illegal option -- r
 usage: sed script [-Ealn] [-i extension] [file ...]
        sed [-Ealn] [-i extension] [-e script] ... [-f script_file] ... [file ...]
+sed: illegal option -- r
 usage: sed script [-Ealn] [-i extension] [file ...]
        sed [-Ealn] [-i extension] [-e script] ... [-f script_file] ... [file ...]
 # comparing ./nanotrav/rcn25.tst to ./nanotrav/rcn25.out

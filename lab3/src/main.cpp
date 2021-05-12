@@ -2,6 +2,7 @@
 #include "Parser.hpp"
 #include "Solver.hpp"
 #include <cassert>
+#include <iomanip>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -19,6 +20,6 @@ int main(int argc, char *argv[]) {
   P.parser(Prob, Equation, Vars);
   Context SolverContext(Prob, Equation, Vars);
   Solver MySolver(&SolverContext);
-  std::cout << MySolver.solve() << '\n';
+  std::cout << std::fixed << std::setprecision(3) << MySolver.solve() << '\n';
   return 0;
 }

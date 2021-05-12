@@ -1,5 +1,5 @@
 CXX := g++
-TARGET := 0710006_lab3
+TARGET := Lab3
 CXXFLAGS := -std=c++17 -Wall -Wextra -O3
 SRC_DIRS := .
 SRCS := $(wildcard $(SRC_DIRS:=/*.cpp))

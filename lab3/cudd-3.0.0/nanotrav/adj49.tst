@@ -106,21 +106,21 @@ Peak number of live nodes: 3444
 Number of BDD variables: 49
 Number of ZDD variables: 0
 Number of cache entries: 32768
-Number of cache look-ups: 51787
-Number of cache hits: 17193
-Number of cache insertions: 25267
-Number of cache collisions: 7653
-Number of cache deletions: 1724
-Cache used slots = 51.77% (expected 51.17%)
+Number of cache look-ups: 51766
+Number of cache hits: 17176
+Number of cache insertions: 25263
+Number of cache collisions: 7630
+Number of cache deletions: 1734
+Cache used slots = 51.60% (expected 51.16%)
 Soft limit for cache size: 51200
 Number of buckets in unique table: 12800
-Used buckets in unique table: 55.40% (expected 55.54%)
+Used buckets in unique table: 55.34% (expected 55.54%)
 Number of BDD and ADD nodes: 16471
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 16082
 Number of dead ZDD nodes: 0
 Total number of nodes allocated: 18850
-Total number of nodes reclaimed: 1813
+Total number of nodes reclaimed: 1654
 Garbage collections so far: 1
 Time for garbage collection: 0.00 sec
 Reorderings so far: 1
@@ -129,19 +129,19 @@ Final size: 338
 total time = 0.02 sec
 Runtime Statistics
 ------------------
-Machine name: Kellyde-Air
+Machine name: Kellyde-Air.localdomain
 User time      0.0 seconds
 System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            = 5017600K
+Maximum resident size            = 5033984K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 1362
+Minor page faults = 1358
 Swaps = 0
 Input blocks = 0
 Output blocks = 1
 Context switch (voluntary) = 1
-Context switch (involuntary) = 15
+Context switch (involuntary) = 27

@@ -13,8 +13,8 @@ Building transition relation. Time = 0.00 sec
 @@@@@BDD reordering with group sifting: from 3979 to ... 1316 nodes in 0.02 sec
 @@BDD reordering with group sifting: from 2656 to ... 1332 nodes in 0.02 sec
 @@BDD reordering with group sifting: from 2687 to ... 1855 nodes in 0.01 sec
-@@@BDD reordering with group sifting: from 3708 to ... 2468 nodes in 0.03 sec
-@@@@BDD reordering with group sifting: from 4224 to ... 2505 nodes in 0.02 sec
+@@@BDD reordering with group sifting: from 3708 to ... 2468 nodes in 0.02 sec
+@@@@BDD reordering with group sifting: from 4224 to ... 2505 nodes in 0.03 sec
 @@@
 Transition relation: 1 parts 19 latches 721 nodes
 Traversing. Time = 0.10 sec
@@ -1358,21 +1358,21 @@ Peak number of live nodes: 4984
 Number of BDD variables: 73
 Number of ZDD variables: 146
 Number of cache entries: 65536
-Number of cache look-ups: 101675
-Number of cache hits: 38961
-Number of cache insertions: 64683
-Number of cache collisions: 10641
-Number of cache deletions: 40160
-Cache used slots = 21.18% (expected 21.33%)
+Number of cache look-ups: 101681
+Number of cache hits: 38960
+Number of cache insertions: 64690
+Number of cache collisions: 10643
+Number of cache deletions: 40134
+Cache used slots = 21.23% (expected 21.33%)
 Soft limit for cache size: 225280
 Number of buckets in unique table: 56320
-Used buckets in unique table: 6.78% (expected 6.75%)
+Used buckets in unique table: 6.74% (expected 6.75%)
 Number of BDD and ADD nodes: 4289
 Number of ZDD nodes: 1185
 Number of dead BDD and ADD nodes: 3545
 Number of dead ZDD nodes: 1039
 Total number of nodes allocated: 38977
-Total number of nodes reclaimed: 10534
+Total number of nodes reclaimed: 10554
 Garbage collections so far: 6
 Time for garbage collection: 0.00 sec
 Reorderings so far: 5
@@ -1381,19 +1381,19 @@ Final size: 688
 total time = 0.15 sec
 Runtime Statistics
 ------------------
-Machine name: Kellyde-Air
+Machine name: Kellyde-Air.localdomain
 User time      0.1 seconds
 System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            = 7835648K
+Maximum resident size            = 7827456K
 
 Virtual memory limit             = unlimited (unlimited)
-Major page faults = 14
-Minor page faults = 2030
+Major page faults = 0
+Minor page faults = 2038
 Swaps = 0
 Input blocks = 0
-Output blocks = 3
+Output blocks = 2
 Context switch (voluntary) = 2
-Context switch (involuntary) = 328
+Context switch (involuntary) = 209

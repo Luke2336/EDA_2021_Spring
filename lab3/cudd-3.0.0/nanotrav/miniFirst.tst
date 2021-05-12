@@ -80,7 +80,7 @@ Final size: 9
 total time = 0.00 sec
 Runtime Statistics
 ------------------
-Machine name: Kellyde-Air
+Machine name: Kellyde-Air.localdomain
 User time      0.0 seconds
 System time    0.0 seconds
 
@@ -89,10 +89,10 @@ Average resident data+stack size =     0K
 Maximum resident size            = 4304896K
 
 Virtual memory limit             = unlimited (unlimited)
-Major page faults = 2
-Minor page faults = 1175
+Major page faults = 0
+Minor page faults = 1181
 Swaps = 0
 Input blocks = 0
 Output blocks = 0
 Context switch (voluntary) = 2
-Context switch (involuntary) = 5
+Context switch (involuntary) = 4
