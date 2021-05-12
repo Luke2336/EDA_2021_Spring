@@ -1,5 +1,6 @@
 #pragma once
 #include "Context.hpp"
+#include "Parser.hpp"
 #include <iostream>
 
 class Solver {
@@ -14,6 +15,8 @@ public:
     char FileName[] = "out.dot";
     ContextPtr->writeDot(FileName);
     // TODO
+    Parser P;
+    auto E = P.dotParse(FileName);
     return 0.0; // TODO
   }
 };
