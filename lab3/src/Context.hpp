@@ -1,11 +1,5 @@
 #pragma once
-#include "Context.hpp"
-#include "cudd.h"
-#include "util.h"
-#include <cstdio>
-#include <iostream>
-#include <string>
-#include <vector>
+#include "include.hpp"
 
 struct Variable {
   int id;

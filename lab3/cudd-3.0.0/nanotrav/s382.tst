@@ -612,9 +612,9 @@ Reached[150]: 95 nodes 1 leaves 8865 minterms
 8865
 depth = 150
 R: 95 nodes 1 leaves 8865 minterms
-Building transition relation. Time = 0.04 sec
+Building transition relation. Time = 0.03 sec
 Transition relation: 21 parts 21 latches 229 nodes
-Computing SCCs. Time = 0.04 sec
+Computing SCCs. Time = 0.03 sec
 S0: 22 nodes 1 leaves 1 minterms
 From[1]: 40 nodes 1 leaves 5 minterms
 Reached[1]: 56 nodes 1 leaves 6 minterms
@@ -3210,42 +3210,42 @@ Peak number of live nodes: 3927
 Number of BDD variables: 87
 Number of ZDD variables: 0
 Number of cache entries: 131072
-Number of cache look-ups: 1257727
-Number of cache hits: 372348
-Number of cache insertions: 915938
-Number of cache collisions: 455279
-Number of cache deletions: 352308
-Cache used slots = 94.86% (expected 94.79%)
+Number of cache look-ups: 1256810
+Number of cache hits: 372007
+Number of cache insertions: 915339
+Number of cache collisions: 454849
+Number of cache deletions: 352305
+Cache used slots = 94.79% (expected 94.78%)
 Soft limit for cache size: 332800
 Number of buckets in unique table: 83200
-Used buckets in unique table: 64.52% (expected 64.12%)
+Used buckets in unique table: 64.42% (expected 64.12%)
 Number of BDD and ADD nodes: 129633
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 129368
 Number of dead ZDD nodes: 0
 Total number of nodes allocated: 1105734
-Total number of nodes reclaimed: 688056
+Total number of nodes reclaimed: 687218
 Garbage collections so far: 10
-Time for garbage collection: 0.03 sec
+Time for garbage collection: 0.05 sec
 Reorderings so far: 0
 Time for reordering: 0.00 sec
 Final size: 168
-total time = 0.38 sec
+total time = 0.47 sec
 Runtime Statistics
 ------------------
 Machine name: Kellyde-Air.localdomain
-User time      0.4 seconds
+User time      0.5 seconds
 System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            = 15925248K
+Maximum resident size            = 15896576K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 4024
+Minor page faults = 4016
 Swaps = 0
 Input blocks = 0
-Output blocks = 3
-Context switch (voluntary) = 2
-Context switch (involuntary) = 114
+Output blocks = 2
+Context switch (voluntary) = 0
+Context switch (involuntary) = 670

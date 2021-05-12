@@ -174,12 +174,12 @@
 /**
  * @brief Prints message and terminates execution.
  */
-// #define fail(why) {\
-//     (void) fprintf(stderr, "Fatal error: file %s, line %d\n%s\n",\
-// 	__FILE__, __LINE__, why);\
-//     (void) fflush(stdout);\
-//     abort();\
-// }
+#define fail(why) {\
+    (void) fprintf(stderr, "Fatal error: file %s, line %d\n%s\n",\
+	__FILE__, __LINE__, why);\
+    (void) fflush(stdout);\
+    abort();\
+}
 
 /* These arguably do NOT belong in util.h */
 /**

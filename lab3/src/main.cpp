@@ -1,11 +1,5 @@
-#include "Context.hpp"
-#include "Parser.hpp"
-#include "Solver.hpp"
-#include <cassert>
-#include <iomanip>
-#include <iostream>
-#include <string>
-#include <vector>
+#include "include.hpp"
+
 int main(int argc, char *argv[]) {
   if (argc != 3)
     assert(false && "Argument error!!");

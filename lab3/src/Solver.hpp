@@ -1,7 +1,5 @@
 #pragma once
-#include "Context.hpp"
-#include "Parser.hpp"
-#include <iostream>
+#include "include.hpp"
 
 class Solver {
   Context *ContextPtr;

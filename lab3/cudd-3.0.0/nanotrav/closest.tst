@@ -100,7 +100,7 @@ Number of cache deletions: 9
 Cache used slots = 0.17% (expected 0.16%)
 Soft limit for cache size: 4096
 Number of buckets in unique table: 1024
-Used buckets in unique table: 4.98% (expected 5.11%)
+Used buckets in unique table: 5.08% (expected 5.11%)
 Number of BDD and ADD nodes: 54
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 42
@@ -125,9 +125,9 @@ Maximum resident size            = 4263936K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 1171
+Minor page faults = 1179
 Swaps = 0
 Input blocks = 0
-Output blocks = 2
-Context switch (voluntary) = 1
-Context switch (involuntary) = 3
+Output blocks = 1
+Context switch (voluntary) = 0
+Context switch (involuntary) = 2

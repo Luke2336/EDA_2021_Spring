@@ -5,11 +5,6 @@
 ## Run
 
 ```bash
-cd cudd-3.0.0
-./configure
-make
-make check
-cd ..
 cd src
 make clean
 make

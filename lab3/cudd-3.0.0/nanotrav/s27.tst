@@ -56,10 +56,10 @@ Number of cache hits: 30
 Number of cache insertions: 115
 Number of cache collisions: 0
 Number of cache deletions: 24
-Cache used slots = 0.35% (expected 0.28%)
+Cache used slots = 0.34% (expected 0.28%)
 Soft limit for cache size: 11264
 Number of buckets in unique table: 2816
-Used buckets in unique table: 3.37% (expected 3.33%)
+Used buckets in unique table: 3.34% (expected 3.33%)
 Number of BDD and ADD nodes: 96
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 67
@@ -80,13 +80,13 @@ System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            = 4341760K
+Maximum resident size            = 4366336K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 1189
+Minor page faults = 1201
 Swaps = 0
 Input blocks = 0
-Output blocks = 2
+Output blocks = 4
 Context switch (voluntary) = 0
-Context switch (involuntary) = 15
+Context switch (involuntary) = 11

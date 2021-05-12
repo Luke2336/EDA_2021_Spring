@@ -1,14 +1,5 @@
 #pragma once
-#include "Context.hpp"
-#include <algorithm>
-#include <cctype>
-#include <cstring>
-#include <fstream>
-#include <iostream>
-#include <map>
-#include <sstream>
-#include <string>
-#include <vector>
+#include "include.hpp"
 
 class Parser {
 public:
