@@ -1,7 +1,6 @@
 #pragma once
 #include "Context.hpp"
 #include <algorithm>
-#include <cassert>
 #include <cctype>
 #include <cstring>
 #include <fstream>
@@ -13,7 +12,10 @@
 
 class Parser {
 public:
-  void parser(double Prob[26], std::vector<std::vector<Variable>> &Clauses,
+  std::map<std::string, int> NameMap;
+  std::map<int, int> LevelMap;
+
+  void parser(double *Prob, std::vector<std::vector<Variable>> &Clauses,
               std::vector<int> &Vars) {
     Clauses.clear();
     while (Clauses.empty()) {
@@ -30,10 +32,10 @@ public:
           Clauses.back().emplace_back(Tmp[i] - 'a', false);
       }
       if (Clauses.back().empty())
-        Clauses.emplace_back();
+        Clauses.pop_back();
     }
     bool IsVar[26] = {};
-    int ch;
+    char ch;
     double p;
     while (std::cin >> ch >> p) {
       if (isupper(ch))
@@ -46,14 +48,15 @@ public:
       if (IsVar[i])
         Vars.emplace_back(i);
   }
+
   std::vector<std::tuple<int, int, int>> dotParse(char *Filename) {
     std::fstream Fin;
     Fin.open(Filename, std::ios::in);
     std::string tmp;
     for (int i = 0; i < 11; ++i)
       getline(Fin, tmp);
-    std::map<std::string, int> NameMap;
-    NameMap.emplace("\"F0\"", -2);
+    NameMap.emplace("\"F0\"", 0);
+    LevelMap.emplace(0, -2);
     while (1) {
       getline(Fin, tmp);
       if (tmp == "{ rank = same; \"CONST NODES\";") {
@@ -65,11 +68,14 @@ public:
             break;
         }
         std::reverse(Name.begin(), Name.end());
-        NameMap.emplace(Name, -1);
+        NameMap.emplace(Name, NameMap.size());
+        LevelMap.emplace(NameMap[Name], -1);
         getline(Fin, tmp);
-        assert(tmp == "}");
+        tmp.pop_back();
+        NameMap.emplace(tmp, NameMap.size());
+        LevelMap.emplace(NameMap[tmp], -1);
         getline(Fin, tmp);
-        assert(tmp == "}");
+        getline(Fin, tmp);
         break;
       } else {
         std::string buff;
@@ -77,13 +83,14 @@ public:
         std::stringstream ss;
         ss.str(tmp);
         ss >> buff >> buff >> buff >> buff >> buff >> Id >> buff;
-        assert(buff == "\";");
         while (1) {
           getline(Fin, tmp);
           if (tmp == "}")
             break;
           tmp.pop_back();
-          NameMap.emplace(tmp, Id);
+          if (NameMap.count(tmp) == 0)
+            NameMap.emplace(tmp, NameMap.size());
+          LevelMap.emplace(NameMap[tmp], Id);
         }
       }
     }
@@ -95,16 +102,14 @@ public:
         break;
       if (tmp[len - 2] == ']' && tmp[len - 3] == '\"')
         continue;
-      bool pos = tmp[len - 2] == ']';
+      bool pos = tmp[len - 4] != 'e';
       while (tmp.back() != '\"')
         tmp.pop_back();
       std::string Par = "", Chd = "";
       std::stringstream ss;
       ss.str(tmp);
       ss >> Par >> tmp >> Chd;
-      int P = NameMap[Par];
-      int C = NameMap[Chd];
-      Ret.emplace_back(P, C, pos);
+      Ret.emplace_back(NameMap[Par], NameMap[Chd], pos);
     }
     Fin.close();
     return Ret;

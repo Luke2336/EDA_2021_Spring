@@ -9,7 +9,7 @@
 
 struct Variable {
   int id;
-  bool sign; // true : pos / false : neg
+  bool sign;
 
   Variable() {}
   Variable(int id, bool sign) : id(id), sign(sign) {}
@@ -83,6 +83,7 @@ public:
     Cudd_Ref(BDD);
     for (const auto Equation : Equations) {
       DdNode *Term = Cudd_ReadOne(GBM);
+      Cudd_Ref(Term);
       for (const auto Var : Equation) {
         DdNode *Node = Var.sign ? Cudd_bddIthVar(GBM, Var.id)
                                 : Cudd_Not(Cudd_bddIthVar(GBM, Var.id));
@@ -99,7 +100,7 @@ public:
   }
 
   void writeDot(char *FileName) {
-    Cudd_BddToAdd(GBM, BDD);
+    BDD = Cudd_BddToAdd(GBM, BDD);
     // print_dd(2, 4);
     FILE *File;
     File = fopen(FileName, "w");
@@ -111,7 +112,29 @@ public:
     Cudd_Quit(GBM);
   }
 
-  double getProb(int i, bool b) const { return b ? Prob[i] : 1 - Prob[i]; }
+  bool isTrue() {
+    if (BDD == Cudd_ReadOne(GBM)) {
+      Cudd_Quit(GBM);
+      return true;
+    }
+    return false;
+  }
+
+  bool isFalse() {
+    if (BDD == Cudd_ReadLogicZero(GBM)) {
+      Cudd_Quit(GBM);
+      return true;
+    }
+    return false;
+  }
+
+  double getProb(int i, bool b) const {
+    if (i == -2)
+      return b ? 1 : 0;
+    if (i == -1)
+      return 1;
+    return b ? Prob[i] : 1 - Prob[i];
+  }
 
   const std::vector<std::vector<Variable>> &getEquations() const {
     return Equations;
